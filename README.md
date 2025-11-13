@@ -1,6 +1,12 @@
 <div align="center">
 
-# fog
+![fog](https://capsule-render.vercel.app/api?type=blur&color=auto&text=fog&height=auto&fontSize=auto&fontAlign=50&fontColor=auto)
+  
+<p align="center">
+  <b>향수 리뷰 & 추천 서비스</b>
+</p>
+
+<br><br>
 
 </div>
 <br>
