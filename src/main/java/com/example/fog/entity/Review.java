@@ -21,7 +21,7 @@ public class Review {
     @Column(length = 1000)
     private String content; // 리뷰 내용
 
-    private String maskedUsername; // 작성자 아이디
+    private String maskedUsername;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

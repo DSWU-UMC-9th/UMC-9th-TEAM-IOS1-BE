@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ReviewResponseDto {
 
+    private Long id;
     private Integer rating;
     private String content;
-    private String maskedUsername; // 아이디 앞 4글자 + ****
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private String maskedUsername;
+    private String updatedDate;
 
     public static String maskUsername(String username) {
         if (username.length() <= 4) return username + "****";

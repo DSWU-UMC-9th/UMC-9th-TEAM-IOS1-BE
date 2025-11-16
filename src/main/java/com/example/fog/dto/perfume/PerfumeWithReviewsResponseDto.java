@@ -9,12 +9,16 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PerfumeResponseDto {
+public class PerfumeWithReviewsResponseDto {
 
+    private Long id;
     private String name;
     private String brand;
     private String price;
     private String description;
     private String imageUrl;
+
+    private Integer reviewCount;
+    private Double averageRating;
     private List<ReviewResponseDto> reviews;
 }

@@ -44,11 +44,11 @@ public class ReviewService {
         Review saved = reviewRepository.save(review);
 
         ReviewResponseDto responseDto = ReviewResponseDto.builder()
+                .id(review.getId())
                 .rating(saved.getRating())
                 .content(saved.getContent())
                 .maskedUsername(saved.getMaskedUsername())
-                .createdAt(saved.getCreatedAt())
-                .updatedAt(saved.getUpdatedAt())
+                .updatedDate(saved.getUpdatedAt().toLocalDate().toString())
                 .build();
 
         return new ResponseDTO<>(ResponseCode.SUCCESS_REGISTER_REVIEW, responseDto);
@@ -68,11 +68,11 @@ public class ReviewService {
         reviewRepository.save(review);
 
         ReviewResponseDto responseDto = ReviewResponseDto.builder()
+                .id(review.getId())
                 .rating(review.getRating())
                 .content(review.getContent())
                 .maskedUsername(ReviewResponseDto.maskUsername(review.getUser().getUsername()))
-                .createdAt(review.getCreatedAt())
-                .updatedAt(review.getUpdatedAt())
+                .updatedDate(review.getUpdatedAt().toLocalDate().toString())
                 .build();
 
         return new ResponseDTO<>(ResponseCode.SUCCESS_UPDATE_REVIEW, responseDto);
