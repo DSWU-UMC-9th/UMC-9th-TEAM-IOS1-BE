@@ -7,6 +7,7 @@ import com.example.fog.dto.response.ResponseDTO;
 import com.example.fog.dto.user.LoginRequestDTO;
 import com.example.fog.dto.user.LoginResponseDTO;
 import com.example.fog.dto.user.RegisterDTO;
+import com.example.fog.dto.user.UserInfoResponseDTO;
 import com.example.fog.entity.User;
 import com.example.fog.exception.GlobalException;
 import com.example.fog.jwt.JWTUtil;
@@ -103,4 +104,17 @@ public class UserServiceImpl implements UserService {
         return ResponseEntity.status(ResponseCode.SUCCESS_LOGIN.getStatus().value())
                 .body(new ResponseDTO<>(ResponseCode.SUCCESS_LOGIN, resp));
     }
+
+    // 내 정보 조회
+    @Override
+    public UserInfoResponseDTO getMyInfo(String username) {
+        User user = userRepository.findUserByUsername(username)
+                .orElseThrow(() -> new GlobalException(ErrorCode.USER_NOT_FOUND));
+
+        return UserInfoResponseDTO.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .build();
+    }
+
 }
