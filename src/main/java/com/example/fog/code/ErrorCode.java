@@ -16,6 +16,10 @@ public enum ErrorCode {
     INVALID_USERNAME_FORMAT(HttpStatus.BAD_REQUEST, "아이디는 영어 또는 영어+숫자를 조합하여 4~12자로 입력하세요"),
     INVALID_PASSWORD_FORMAT(HttpStatus.BAD_REQUEST, "비밀번호는 영어와 숫자를 조합하여 6~15자로 입력하세요"),
 
+    NOT_FOUND_PERFUME(HttpStatus.NOT_FOUND, "해당 향수를 찾을 수 없습니다."),
+    REVIEW_NOT_FOUND(HttpStatus.NOT_FOUND, "리뷰가 존재하지 않습니다."),
+    REVIEW_NOT_AUTHOR(HttpStatus.FORBIDDEN, "본인 리뷰만 수정할 수 있습니다."),
+
     /**
      * 401 UNAUTHORIZED - 인증 실패
      */
