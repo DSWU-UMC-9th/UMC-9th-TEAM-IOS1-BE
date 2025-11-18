@@ -16,6 +16,9 @@ public enum ResponseCode {
 
     SUCCESS_GET_SORTED_PERFUMES(HttpStatus.OK,"향수 목록 정렬 조회를 성공했습니다."),
     SUCCESS_GET_RECOMMEND_PERFUMES(HttpStatus.OK, "추천 향수 조회에 성공했습니다." ),
+
+    SUCCESS_GET_MY_REVIEWS(HttpStatus.OK, "내가 작성한 리뷰 조회 성공")
+
     ;
 
     private final HttpStatus status;
