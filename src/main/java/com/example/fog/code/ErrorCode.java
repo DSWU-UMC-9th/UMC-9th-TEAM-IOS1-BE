@@ -20,6 +20,8 @@ public enum ErrorCode {
     REVIEW_NOT_FOUND(HttpStatus.NOT_FOUND, "리뷰가 존재하지 않습니다."),
     REVIEW_NOT_AUTHOR(HttpStatus.FORBIDDEN, "본인 리뷰만 수정할 수 있습니다."),
 
+    INVALID_SORT_OPTION(HttpStatus.BAD_REQUEST, "올바르지 않은 향수 정렬 옵션입니다."),
+
     /**
      * 401 UNAUTHORIZED - 인증 실패
      */
