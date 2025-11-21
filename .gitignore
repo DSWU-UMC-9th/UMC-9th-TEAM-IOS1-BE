@@ -36,5 +36,8 @@ out/
 ### VS Code ###
 .vscode/
 /.idea/
-/src/main/resources/application.yml
+/src/main/resources/application-dev.yml
 /src/main/resources/data.sql
+
+### macOS ###
+.DS_Store
