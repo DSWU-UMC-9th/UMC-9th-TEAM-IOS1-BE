@@ -22,11 +22,11 @@ public class SwaggerConfig {
                 .title("2025-UMC-9th-TEAM-IOS1") //이름
                 .description("향수 리뷰 & 추천 사이트"); //설명
 
-        Server localServer = new Server().url("/");
+        Server prodServer = new Server().url("https://www.tenma.store");
 
         return new OpenAPI()
                 .info(info)
-                .servers(List.of(localServer))
+                .servers(List.of(prodServer))
                 .components(new Components().addSecuritySchemes(
                         SECURITY_SCHEME_NAME,
                         new SecurityScheme()
