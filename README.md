@@ -189,9 +189,8 @@ main ← feat
 │       ├── 📁 service          # 핵심 비즈니스 로직
 │       └── 📄 FogApplication   # 메인 클래스
 ├── 📁 src.main.resources
-│   ├── application.yml
-│   ├── application-prod.yml
-│   ├── application-local.yml
+│   ├── 📄 application.yml
+│   ├── 📄 application-prod.yml
 │   └── 📁 static.images     # 정적 이미지
 ├── 📄 build.gradle
 ├── 📄 Dockerfile
