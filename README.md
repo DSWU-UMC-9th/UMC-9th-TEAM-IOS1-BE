@@ -191,7 +191,7 @@ main ← feat
 ├── 📁 src.main.resources
 │   ├── 📄 application.yml
 │   ├── 📄 application-prod.yml
-│   └── 📁 static.images     # 정적 이미지
+│   └── 📁 static.images        # 정적 이미지
 ├── 📄 build.gradle
 ├── 📄 Dockerfile
 ├── 📄 .gitignore
