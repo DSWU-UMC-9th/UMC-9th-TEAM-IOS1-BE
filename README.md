@@ -175,10 +175,31 @@ main ← feat
 
 ## 📂 프로젝트 구조
 ```
-
+📦 fog-app
+├── 📁 src.main.java
+│   └── com.example.fog
+│       ├── 📁 code             # 공통 응답 코드
+│       ├── 📁 config           # Swagger, Security 등 환경 설정
+│       ├── 📁 controller       # REST API 컨트롤러
+│       ├── 📁 dto              # 요청·응답 DTO
+│       ├── 📁 entity           # JPA 엔티티
+│       ├── 📁 exception        # 커스텀 예외 및 예외 핸들러
+│       ├── 📁 jwt              # JWT 토큰 발급/검증 관련 로직
+│       ├── 📁 repository       # JPA Repository 인터페이스
+│       ├── 📁 service          # 핵심 비즈니스 로직
+│       └── 📄 FogApplication   # 메인 클래스
+├── 📁 src.main.resources
+│   ├── application.yml
+│   ├── application-prod.yml
+│   ├── application-local.yml
+│   └── 📁 static.images     # 정적 이미지
+├── 📄 build.gradle
+├── 📄 Dockerfile
+├── 📄 .gitignore
+└── 📄 README.md
 ```
 
  ## 📄 API Docs
-	•	Swagger UI : https://{서버 주소}/swagger-ui/index.html
+	•	Swagger UI : https://www.tenma.store/swagger-ui/index.html
   
   <!-- prettier-ignore-end -->
