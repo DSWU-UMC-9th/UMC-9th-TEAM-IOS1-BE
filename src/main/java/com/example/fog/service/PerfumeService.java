@@ -35,7 +35,8 @@ public class PerfumeService {
         Perfume perfume = perfumeRepository.findById(perfumeId)
                 .orElseThrow(() -> new GlobalException(ErrorCode.NOT_FOUND_PERFUME));
 
-        List<Review> reviews = reviewRepository.findByPerfume(perfume, Sort.by(Sort.Direction.DESC, "createdAt"));
+        //List<Review> reviews = reviewRepository.findByPerfume(perfume, Sort.by(Sort.Direction.DESC, "createdAt"));
+        List<Review> reviews = reviewRepository.findByPerfumeWithUser(perfume);
 
         List<ReviewResponseDto> reviewDtos = reviews.stream().map(r -> ReviewResponseDto.builder()
                 .id(r.getId())
