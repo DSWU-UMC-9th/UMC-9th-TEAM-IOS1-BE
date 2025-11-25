@@ -15,6 +15,7 @@ import com.example.fog.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -31,6 +32,7 @@ public class PerfumeService {
     private final PerfumeRepository perfumeRepository;
     private final ReviewRepository reviewRepository;
 
+    @Transactional(readOnly = true)
     public ResponseDTO<PerfumeWithReviewsResponseDto> getPerfumeWithReviews(Long perfumeId) {
         Perfume perfume = perfumeRepository.findById(perfumeId)
                 .orElseThrow(() -> new GlobalException(ErrorCode.NOT_FOUND_PERFUME));

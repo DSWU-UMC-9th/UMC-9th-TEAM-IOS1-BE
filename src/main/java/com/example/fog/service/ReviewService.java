@@ -57,6 +57,7 @@ public class ReviewService {
         return new ResponseDTO<>(ResponseCode.SUCCESS_REGISTER_REVIEW, responseDto);
     }
 
+    @Transactional
     public ResponseDTO<ReviewResponseDto> updateReview(Long reviewId, Long userId, ReviewRequestDTO dto) {
 
         Review review = reviewRepository.findById(reviewId)
