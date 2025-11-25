@@ -9,14 +9,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 📥 코드 체크아웃
       - name: Checkout source
         uses: actions/checkout@v4
 
-      # 🔧 QEMU 설치 (멀티아키 빌드용)
+      # 🔧 Gradle 빌드 (JAR 생성)
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Grant execute permission to Gradle
+        run: chmod +x ./gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew clean build -x test
+
+      # 🔧 QEMU 설치 (멀티아키 지원)
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
-      # 🔧 Docker Buildx 설치
+      # 🔧 Buildx 설치
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -27,7 +41,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      # 🐳 멀티아키 빌드 & 푸시
+      # 🐳 멀티아키 빌드 + 푸시
       - name: Build and push Docker image (multi-arch)
         uses: docker/build-push-action@v5
         with:
@@ -37,7 +51,7 @@ jobs:
           push: true
           tags: heezuko/fog-app:latest
 
-      # 🚀 EC2 접속 후 배포
+      # 🚀 EC2 자동 배포
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
