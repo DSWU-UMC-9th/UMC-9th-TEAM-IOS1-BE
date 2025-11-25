@@ -1,8 +1,12 @@
 package com.example.fog.controller;
 
+import com.example.fog.code.ResponseCode;
+import com.example.fog.dto.response.ResponseDTO;
 import com.example.fog.dto.user.RegisterDTO;
 import com.example.fog.dto.user.LoginRequestDTO;
+import com.example.fog.dto.user.UserInfoResponseDTO;
 import com.example.fog.entity.User;
+import com.example.fog.service.ReviewService;
 import com.example.fog.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -11,13 +15,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final ReviewService reviewService;
 
     private User getLoggedInUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -36,4 +43,27 @@ public class UserController {
         return userService.login(dto);
     }
 
+    @Operation(summary = "내 정보 조회", description = "로그인한 사용자의 정보 반환")
+    @GetMapping("/me")
+    public ResponseEntity<ResponseDTO<UserInfoResponseDTO>> getMyInfo() {
+
+        User user = getLoggedInUser();
+
+        return ResponseEntity.ok(
+                new ResponseDTO<>(ResponseCode.SUCCESS_LOGIN,
+                        userService.getMyInfo(user.getUsername()))
+        );
+    }
+
+    @Operation(summary = "내가 작성한 리뷰 조회", description = "로그인한 사용자가 작성한 리뷰 목록 조회")
+    @GetMapping("/my/reviews")
+    public ResponseEntity<?> getMyReviews(
+            @RequestParam(required = false, defaultValue = "new") String order
+    ) {
+        User loginUser = getLoggedInUser();
+
+        return ResponseEntity.ok(
+                reviewService.getMyReviews(loginUser.getId(), order)
+        );
+    }
 }

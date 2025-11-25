@@ -2,6 +2,7 @@ package com.example.fog.repository;
 
 import com.example.fog.entity.Review;
 import com.example.fog.entity.Perfume;
+import com.example.fog.entity.User;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,6 +14,8 @@ import java.util.List;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
     List<Review> findByPerfume(Perfume perfume, Sort sort);
+    List<Review> findByUser(User user, Sort sort);
+
 
     @Query("SELECT r FROM Review r JOIN FETCH r.user WHERE r.perfume = :perfume ORDER BY r.createdAt DESC")
     List<Review> findByPerfumeWithUser(@Param("perfume") Perfume perfume);

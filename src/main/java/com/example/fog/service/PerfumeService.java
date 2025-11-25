@@ -2,6 +2,8 @@ package com.example.fog.service;
 
 import com.example.fog.code.ErrorCode;
 import com.example.fog.code.ResponseCode;
+import com.example.fog.dto.perfume.PerfumeRecommendResponseDTO;
+import com.example.fog.dto.perfume.PerfumeSummaryResponseDTO;
 import com.example.fog.dto.perfume.PerfumeWithReviewsResponseDto;
 import com.example.fog.dto.reivew.ReviewResponseDto;
 import com.example.fog.dto.response.ResponseDTO;
@@ -16,6 +18,9 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,5 +64,29 @@ public class PerfumeService {
                 .build();
 
         return new ResponseDTO<>(ResponseCode.SUCCESS_GET_PERFUME, responseDto);
+    }
+
+    public ResponseDTO<List<PerfumeSummaryResponseDTO>> getPerfumesSortedByRating(String sort) {
+
+        List<PerfumeSummaryResponseDTO> perfumeDtos = perfumeRepository.findPerfumeRating();
+
+        perfumeDtos.sort(sort.equals("avgRateAsc") ?
+                Comparator.comparing(PerfumeSummaryResponseDTO::getAverageRating) :
+                Comparator.comparing(PerfumeSummaryResponseDTO::getAverageRating).reversed()
+        );
+
+        return new ResponseDTO<>(ResponseCode.SUCCESS_GET_SORTED_PERFUMES, perfumeDtos);
+    }
+
+    public ResponseDTO<List<PerfumeRecommendResponseDTO>> getRecommendPerfumes() {
+
+        LocalDateTime today = LocalDate.now().atStartOfDay();
+
+        List<PerfumeRecommendResponseDTO> recommendDtos =
+                perfumeRepository.findTodayTopPerfumes(today).stream()
+                        .limit(3)
+                        .toList();
+
+        return new ResponseDTO<>(ResponseCode.SUCCESS_GET_RECOMMEND_PERFUMES, recommendDtos);
     }
 }

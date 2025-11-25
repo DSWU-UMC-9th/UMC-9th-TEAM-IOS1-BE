@@ -41,8 +41,8 @@
   
 🔧 **Gradle**
 ```
-./gradlew clean build    # 프로젝트 빌드
-./gradlew bootRun        # 로컬 실행
+./gradlew clean build -x test # 빌드 (테스트 생략)
+./gradlew bootRun             # 로컬 실행
 ```
 
 🐳 **Docker 기반 실행**
@@ -70,7 +70,7 @@ main ← feat
 
 - **커밋 유형**
 
-  - ✨ Feat: 새로운 기능 추가
+  - ✨ Feat : 새로운 기능 추가
   - 🐛 Fix : 버그 수정
   - 🔧 Chore : 빌드 설정, 의존성 업데이트 등 작업
   - ✏️ Typing Error : 오타 수정
@@ -78,7 +78,7 @@ main ← feat
   - 💡 Add : 파일 추가 (ex- 이미지 추가)
   - 🔥 Del : 파일 삭제
   - ♻️ Refactor : 코드 리펙토링
-  - 🎉 Init: 프로젝트 세팅
+  - 🎉 Init : 프로젝트 세팅
 
 - **형식**: `커밋유형: 상세설명`
 - **예시**:
@@ -91,8 +91,8 @@ main ← feat
 
 - **브랜치 종류**
   - `Feat`: 새로운 기능 추가
-  - `Fix` : 버그 수정
-  - `Refactor` : 코드 리펙토링
+  - `Fix`: 버그 수정
+  - `Refactor`: 코드 리펙토링
   - `Init`: 프로젝트 세팅
 - **형식**: `브랜치종류/상세기능`
 - **예시**:
@@ -105,8 +105,8 @@ main ← feat
 
 - **태그 목록**:
   - `Feat`: 새로운 기능 추가
-  - `Fix` : 버그 수정
-  - `Refactor` : 코드 리펙토링
+  - `Fix`: 버그 수정
+  - `Refactor`: 코드 리펙토링
   - `Init`: 프로젝트 세팅
 - **예시**:
   - [Feat] 로그인 기능 구현
@@ -151,7 +151,7 @@ main ← feat
 - **PR 작성 규칙**:
 
 ```
-<!-- PR 제목은 '[Feat] 작업 내용' 과 같은 형태로 작성해주세요.  -->
+<!-- PR 제목은 '[Feat] 작업 내용'과 같은 형태로 작성해주세요.  -->
 
 ### 📑 이슈 번호
 
@@ -175,10 +175,30 @@ main ← feat
 
 ## 📂 프로젝트 구조
 ```
-
+📦 fog-app
+├── 📁 src.main.java
+│   └── com.example.fog
+│       ├── 📁 code             # 공통 응답 코드
+│       ├── 📁 config           # Swagger, Security 등 환경 설정
+│       ├── 📁 controller       # REST API 컨트롤러
+│       ├── 📁 dto              # 요청·응답 DTO
+│       ├── 📁 entity           # JPA 엔티티
+│       ├── 📁 exception        # 커스텀 예외 및 예외 핸들러
+│       ├── 📁 jwt              # JWT 토큰 발급/검증 관련 로직
+│       ├── 📁 repository       # JPA Repository 인터페이스
+│       ├── 📁 service          # 핵심 비즈니스 로직
+│       └── 📄 FogApplication   # 메인 클래스
+├── 📁 src.main.resources
+│   ├── 📄 application.yml
+│   ├── 📄 application-prod.yml
+│   └── 📁 static.images        # 정적 이미지
+├── 📄 build.gradle
+├── 📄 Dockerfile
+├── 📄 .gitignore
+└── 📄 README.md
 ```
 
  ## 📄 API Docs
-	•	Swagger UI : https://{서버 주소}/swagger-ui/index.html
+	•	Swagger UI : https://www.tenma.store/swagger-ui/index.html
   
   <!-- prettier-ignore-end -->

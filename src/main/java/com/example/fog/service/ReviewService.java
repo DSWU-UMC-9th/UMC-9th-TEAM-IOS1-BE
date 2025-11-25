@@ -13,8 +13,11 @@ import com.example.fog.repository.PerfumeRepository;
 import com.example.fog.repository.ReviewRepository;
 import com.example.fog.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -77,5 +80,31 @@ public class ReviewService {
 
         return new ResponseDTO<>(ResponseCode.SUCCESS_UPDATE_REVIEW, responseDto);
     }
+
+    @Transactional(readOnly = true)
+    public ResponseDTO<List<ReviewResponseDto>> getMyReviews(Long userId, String order) {
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new GlobalException(ErrorCode.USER_NOT_FOUND));
+
+        Sort sort = order.equals("old")
+                ? Sort.by(Sort.Direction.ASC, "createdAt")
+                : Sort.by(Sort.Direction.DESC, "createdAt");
+
+        List<Review> reviews = reviewRepository.findByUser(user, sort);
+
+        List<ReviewResponseDto> result = reviews.stream()
+                .map(r -> ReviewResponseDto.builder()
+                        .id(r.getId())
+                        .rating(r.getRating())
+                        .content(r.getContent())
+                        .maskedUsername(r.getMaskedUsername())
+                        .updatedDate(r.getUpdatedAt().toLocalDate().toString())
+                        .build()
+                ).toList();
+
+        return new ResponseDTO<>(ResponseCode.SUCCESS_GET_MY_REVIEWS, result);
+    }
+
 
 }
