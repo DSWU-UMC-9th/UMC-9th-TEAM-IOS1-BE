@@ -41,8 +41,8 @@
   
 🔧 **Gradle**
 ```
-./gradlew clean build    # 프로젝트 빌드
-./gradlew bootRun        # 로컬 실행
+./gradlew clean build -x test # 빌드 (테스트 생략)
+./gradlew bootRun             # 로컬 실행
 ```
 
 🐳 **Docker 기반 실행**
