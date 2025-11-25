@@ -21,7 +21,6 @@ public class JWTUtil {
     }
 
     public String createJWT(String username) {
-        System.out.println("[JWT 생성] secretKey: " + Base64.getEncoder().encodeToString(secretKey.getEncoded()));
 
         return Jwts.builder()
                 .setSubject(username)
