@@ -2,6 +2,7 @@ package com.example.fog.service;
 
 import com.example.fog.code.ErrorCode;
 import com.example.fog.code.ResponseCode;
+import com.example.fog.dto.reivew.MyReviewResponseDto;
 import com.example.fog.dto.reivew.ReviewRequestDTO;
 import com.example.fog.dto.reivew.ReviewResponseDto;
 import com.example.fog.dto.response.ResponseDTO;
@@ -83,7 +84,7 @@ public class ReviewService {
     }
 
     @Transactional(readOnly = true)
-    public ResponseDTO<List<ReviewResponseDto>> getMyReviews(Long userId, String order) {
+    public ResponseDTO<List<MyReviewResponseDto>> getMyReviews(Long userId, String order) {
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new GlobalException(ErrorCode.USER_NOT_FOUND));
@@ -94,18 +95,20 @@ public class ReviewService {
 
         List<Review> reviews = reviewRepository.findByUser(user, sort);
 
-        List<ReviewResponseDto> result = reviews.stream()
-                .map(r -> ReviewResponseDto.builder()
+        List<MyReviewResponseDto> result = reviews.stream()
+                .map(r -> MyReviewResponseDto.builder()
                         .id(r.getId())
                         .rating(r.getRating())
                         .content(r.getContent())
                         .maskedUsername(r.getMaskedUsername())
                         .updatedDate(r.getUpdatedAt().toLocalDate().toString())
+                        .userId(r.getUser().getId())
                         .build()
                 ).toList();
 
         return new ResponseDTO<>(ResponseCode.SUCCESS_GET_MY_REVIEWS, result);
     }
+
 
 
 }
