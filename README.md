@@ -30,7 +30,9 @@
 | Language     | ![Java17](https://img.shields.io/badge/Java%2017-007396?style=for-the-badge&logo=openjdk&logoColor=white)                                                                                                                | 안정적이고 대규모 프로젝트에 적합   |
 | ORM          | ![JPA](https://img.shields.io/badge/JPA%20(Hibernate)-59666C?style=for-the-badge&logo=hibernate&logoColor=white)                                                                                                        | 객체지향적인 DB 접근                |
 | DB           | ![MySQL](https://img.shields.io/badge/MySQL%208-4479A1?style=for-the-badge&logo=mysql&logoColor=white)                                                                                                                   | 안정적이고 널리 사용되는 RDBMS      |
+| Auth         | ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)                                                                                                                   | 토큰 기반 인증                      |
 | Deployment   | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) ![AWS EC2](https://img.shields.io/badge/AWS%20EC2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white)        | 컨테이너 기반 배포, 클라우드 확장성  |
+| CI/CD        | ![GitHubActions](https://img.shields.io/badge/GitHubActions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)                                                                                               | 자동화된 빌드/배포 파이프라인        |
 
 <br>
 
