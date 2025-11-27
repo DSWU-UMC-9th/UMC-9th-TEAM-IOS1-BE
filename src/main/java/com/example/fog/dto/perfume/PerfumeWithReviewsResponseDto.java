@@ -1,6 +1,6 @@
 package com.example.fog.dto.perfume;
 
-import com.example.fog.dto.reivew.ReviewResponseDto;
+import com.example.fog.dto.reivew.PerfumeWithReviewDto;
 import lombok.*;
 import java.util.List;
 
@@ -20,5 +20,5 @@ public class PerfumeWithReviewsResponseDto {
 
     private Integer reviewCount;
     private Double averageRating;
-    private List<ReviewResponseDto> reviews;
+    private List<PerfumeWithReviewDto> reviews;
 }

@@ -5,6 +5,7 @@ import com.example.fog.code.ResponseCode;
 import com.example.fog.dto.perfume.PerfumeRecommendResponseDTO;
 import com.example.fog.dto.perfume.PerfumeSummaryResponseDTO;
 import com.example.fog.dto.perfume.PerfumeWithReviewsResponseDto;
+import com.example.fog.dto.reivew.PerfumeWithReviewDto;
 import com.example.fog.dto.reivew.ReviewResponseDto;
 import com.example.fog.dto.response.ResponseDTO;
 import com.example.fog.entity.Perfume;
@@ -40,13 +41,15 @@ public class PerfumeService {
         //List<Review> reviews = reviewRepository.findByPerfume(perfume, Sort.by(Sort.Direction.DESC, "createdAt"));
         List<Review> reviews = reviewRepository.findByPerfumeWithUser(perfume);
 
-        List<ReviewResponseDto> reviewDtos = reviews.stream().map(r -> ReviewResponseDto.builder()
+        List<PerfumeWithReviewDto> reviewDtos = reviews.stream().map(r -> PerfumeWithReviewDto.builder()
                 .id(r.getId())
                 .rating(r.getRating())
                 .content(r.getContent())
-                .maskedUsername(ReviewResponseDto.maskUsername(r.getUser().getUsername()))
+                .maskedUsername(PerfumeWithReviewDto.maskUsername(r.getUser().getUsername()))
                 .updatedDate(r.getUpdatedAt().toLocalDate().toString())
+                .userId(r.getUser().getId())
                 .build()
+
         ).collect(Collectors.toList());
 
         Double averageRating = reviews.isEmpty() ? 0.0 :
